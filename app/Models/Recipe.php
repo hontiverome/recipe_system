@@ -15,5 +15,12 @@ class Recipe extends Model
         'cook_time',
         'servings',
         'category',
+        'image',
+        'difficulty',
     ];
+
+    public function ingredientList()
+    {
+        return $this->hasMany(Ingredient::class);
+    }
 }

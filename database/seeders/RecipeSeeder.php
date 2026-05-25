@@ -13,7 +13,7 @@ class RecipeSeeder extends Seeder
      */
     public function run(): void
     {
-        Recipe::create([
+        $carbonara = Recipe::create([
             'title' => 'Spaghetti Carbonara',
             'description' => 'A classic Italian pasta dish with eggs, cheese, and bacon.',
             'ingredients' => "400g spaghetti\n200g guanciale or bacon\n4 large eggs\n100g Pecorino Romano cheese\nSalt and black pepper to taste",
@@ -24,7 +24,15 @@ class RecipeSeeder extends Seeder
             'category' => 'Italian',
         ]);
 
-        Recipe::create([
+        $carbonara->ingredientList()->createMany([
+            ['name' => 'Spaghetti', 'quantity' => 400, 'unit' => 'g'],
+            ['name' => 'Guanciale or Bacon', 'quantity' => 200, 'unit' => 'g'],
+            ['name' => 'Large Eggs', 'quantity' => 4, 'unit' => 'whole'],
+            ['name' => 'Pecorino Romano Cheese', 'quantity' => 100, 'unit' => 'g'],
+            ['name' => 'Salt and Black Pepper', 'quantity' => 1, 'unit' => 'to taste'],
+        ]);
+
+        $cookies = Recipe::create([
             'title' => 'Chocolate Chip Cookies',
             'description' => 'Soft and chewy cookies loaded with chocolate chips.',
             'ingredients' => "225g butter, softened\n100g brown sugar\n100g white sugar\n2 large eggs\n2 tsp vanilla extract\n280g all-purpose flour\n1 tsp baking soda\n1 tsp salt\n340g chocolate chips",
@@ -35,7 +43,19 @@ class RecipeSeeder extends Seeder
             'category' => 'Dessert',
         ]);
 
-        Recipe::create([
+        $cookies->ingredientList()->createMany([
+            ['name' => 'Butter', 'quantity' => 225, 'unit' => 'g', 'notes' => 'softened'],
+            ['name' => 'Brown Sugar', 'quantity' => 100, 'unit' => 'g'],
+            ['name' => 'White Sugar', 'quantity' => 100, 'unit' => 'g'],
+            ['name' => 'Large Eggs', 'quantity' => 2, 'unit' => 'whole'],
+            ['name' => 'Vanilla Extract', 'quantity' => 2, 'unit' => 'tsp'],
+            ['name' => 'All-Purpose Flour', 'quantity' => 280, 'unit' => 'g'],
+            ['name' => 'Baking Soda', 'quantity' => 1, 'unit' => 'tsp'],
+            ['name' => 'Salt', 'quantity' => 1, 'unit' => 'tsp'],
+            ['name' => 'Chocolate Chips', 'quantity' => 340, 'unit' => 'g'],
+        ]);
+
+        $caesar = Recipe::create([
             'title' => 'Caesar Salad',
             'description' => 'Fresh lettuce with homemade Caesar dressing and croutons.',
             'ingredients' => "1 head romaine lettuce\n100g Parmesan cheese\n100g croutons\n3 cloves garlic\n1 egg yolk\n2 tbsp lemon juice\n1 tbsp Worcestershire sauce\n120ml olive oil\nSalt and pepper to taste",
@@ -44,6 +64,18 @@ class RecipeSeeder extends Seeder
             'cook_time' => 0,
             'servings' => 4,
             'category' => 'Salad',
+        ]);
+
+        $caesar->ingredientList()->createMany([
+            ['name' => 'Romaine Lettuce', 'quantity' => 1, 'unit' => 'head'],
+            ['name' => 'Parmesan Cheese', 'quantity' => 100, 'unit' => 'g'],
+            ['name' => 'Croutons', 'quantity' => 100, 'unit' => 'g'],
+            ['name' => 'Garlic Cloves', 'quantity' => 3, 'unit' => 'cloves'],
+            ['name' => 'Egg Yolk', 'quantity' => 1, 'unit' => 'whole'],
+            ['name' => 'Lemon Juice', 'quantity' => 2, 'unit' => 'tbsp'],
+            ['name' => 'Worcestershire Sauce', 'quantity' => 1, 'unit' => 'tbsp'],
+            ['name' => 'Olive Oil', 'quantity' => 120, 'unit' => 'ml'],
+            ['name' => 'Salt and Pepper', 'quantity' => 1, 'unit' => 'to taste'],
         ]);
     }
 }
