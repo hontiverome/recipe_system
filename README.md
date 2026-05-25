@@ -166,9 +166,6 @@ npm install
 npm run build
 ```
 
-## License
-
-This project is open source and available under the MIT License.
 
 ## Support
 
@@ -176,10 +173,3 @@ For help with Laravel, visit [Laravel Documentation](https://laravel.com/docs)
 For Vue.js help, visit [Vue Documentation](https://vuejs.org/guide/)
 
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
