@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->longText('ingredients');
+            $table->longText('ingredients')->nullable();
             $table->longText('instructions');
             $table->integer('prep_time')->nullable();
             $table->integer('cook_time')->nullable();
