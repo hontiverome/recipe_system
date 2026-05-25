@@ -40,25 +40,49 @@
           v-for="recipe in recipes"
           :key="recipe.id"
           :to="`/recipes/${recipe.id}`"
-          class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-4 cursor-pointer"
+          class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow overflow-hidden cursor-pointer"
         >
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ recipe.title }}</h3>
-          <p v-if="recipe.description" class="text-gray-600 text-sm mb-3 line-clamp-2">
-            {{ recipe.description }}
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span v-if="recipe.category" class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
-              {{ recipe.category }}
-            </span>
-            <span v-if="recipe.prep_time" class="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-              ⏱ {{ recipe.prep_time }}m prep
-            </span>
-            <span v-if="recipe.cook_time" class="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-              🔥 {{ recipe.cook_time }}m cook
-            </span>
-            <span v-if="recipe.servings" class="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-              👥 {{ recipe.servings }} servings
-            </span>
+          <!-- Recipe Image -->
+          <div class="w-full h-48 bg-gray-200 overflow-hidden">
+            <img
+              v-if="recipe.image"
+              :src="recipe.image"
+              :alt="recipe.title"
+              class="w-full h-full object-cover hover:scale-105 transition-transform"
+              @error="(e) => { e.target.style.display = 'none'; }"
+            />
+            <div class="w-full h-full flex items-center justify-center bg-gray-300 text-gray-400">
+              <span>No image</span>
+            </div>
+          </div>
+          
+          <!-- Recipe Info -->
+          <div class="p-4">
+            <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ recipe.title }}</h3>
+            <p v-if="recipe.description" class="text-gray-600 text-sm mb-3 line-clamp-2">
+              {{ recipe.description }}
+            </p>
+            
+            <!-- Difficulty and Badges -->
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span v-if="recipe.difficulty" :class="{
+                'bg-green-100 text-green-800': recipe.difficulty === 'easy',
+                'bg-yellow-100 text-yellow-800': recipe.difficulty === 'medium',
+                'bg-red-100 text-red-800': recipe.difficulty === 'hard',
+              }" class="inline-block px-2 py-1 rounded text-xs font-medium">
+                {{ recipe.difficulty.charAt(0).toUpperCase() + recipe.difficulty.slice(1) }}
+              </span>
+              <span v-if="recipe.category" class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                {{ recipe.category }}
+              </span>
+            </div>
+            
+            <!-- Timing and Servings -->
+            <div class="flex flex-wrap gap-2 text-xs text-gray-600">
+              <span v-if="recipe.prep_time" class="inline-block">⏱ {{ recipe.prep_time }}m prep</span>
+              <span v-if="recipe.cook_time" class="inline-block">🔥 {{ recipe.cook_time }}m cook</span>
+              <span v-if="recipe.servings" class="inline-block">👥 {{ recipe.servings }} servings</span>
+            </div>
           </div>
         </router-link>
       </div>
